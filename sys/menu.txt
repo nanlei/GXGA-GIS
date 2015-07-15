@@ -1,0 +1,8 @@
+﻿[{ id: "menu1", text: "监控分布"}, 
+     { id: "11", pid: "menu1", text: "凌水", url: "monitor/lingshui.html", iconPosition: "top" } , 
+     { id: "12", pid: "menu1", text: "七贤岭", url: "monitor/qixianling.html", iconPosition: "top" } , 
+     { id: "13", pid: "menu1", text: "河口", url: "monitor/hekou.html", iconPosition: "top" } , 
+     { id: "14", pid: "menu1", text: "龙王塘", url: "monitor/longwangtang.html", iconPosition: "top" } ,
+ { id: "menu9", text: "实用工具"}, 
+     { id: "91", pid: "menu9", text: "GPS获取", url: "utility/gps.html", iconPosition: "top" } 
+]
