@@ -4,11 +4,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>大连市公安局高新园区分局 - 地理信息系统</title>
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=xMn0hRSL0v1A1L39PqGXckNV"></script>
-    <script type="text/javascript" src="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
+    <script type="text/javascript"
+            src="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
     <script language="javascript" src="../js/jquery.min.js"></script>
     <script language="javascript" src="../data/hekou.js"></script>
     <link href="../css/style.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" />
+    <link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css"/>
 </head>
 <body>
 <div id="allmap"></div>
@@ -28,32 +29,31 @@
     map.addControl(new BMap.OverviewMapControl({isOpen: true, anchor: BMAP_ANCHOR_BOTTOM_RIGHT}));   //右下角，打开
 
     //获取数据
-    for(var i=0;i<hekou_monitor.length;i++){
-       makePint(hekou_monitor[i]);
+    for (var i = 0; i < hekou_monitor.length; i++) {
+        makePint(hekou_monitor[i]);
     }
 
-    function makePint(data){
-        var lng=data.lng;
-        var lat=data.lat;
-        var point = new BMap.Point(lng,lat);
-        var marker =new BMap.Marker(point);
+    function makePint(data) {
+        var lng = data.lng;
+        var lat = data.lat;
+        var point = new BMap.Point(lng, lat);
+        var marker = new BMap.Marker(point);
         marker.setTitle(data.name);
 
-        var content ="经度："+data.lng+"<br>"+"纬度："+data.lat+"<br>"+"区域："+data.area+"<br>"+"状态："+data.status+"<br>"+"备注："+data.remark;
+        var content = "经度：" + data.lng + "<br>" + "纬度：" + data.lat + "<br>" + "区域：" + data.area + "<br>" + "状态：" + data.status + "<br>" + "备注：" + data.remark;
         //创建检索信息窗口对象
         var searchInfoWindow = new BMapLib.SearchInfoWindow(map, content, {
             title: data.name, //标题
-            panel : "panel", //检索结果面板
-            enableAutoPan : true, //自动平移
-            searchTypes :[
+            panel: "panel", //检索结果面板
+            enableAutoPan: true, //自动平移
+            searchTypes: [
                 BMAPLIB_TAB_FROM_HERE, //从这里出发
                 BMAPLIB_TAB_TO_HERE,  //到这里去
                 BMAPLIB_TAB_SEARCH   //周边检索
             ]
         });
 
-        marker.enableDragging(); //marker可拖拽
-        marker.addEventListener("click", function(e){
+        marker.addEventListener("click", function (e) {
             searchInfoWindow.open(marker);
         });
         map.addOverlay(marker);
