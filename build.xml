@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="GXGA-GIS" default="zip" basedir=".">
+    <echo message="Building the GAGA-GIS project ......" />
+    <property environment="env" />
+    <property name="app.name" value="gxga-gis" />
+    <property name="target.dir" value="${basedir}/target" />
+    <property name="project.dir" value="${target.dir}/GXGA-GIS" />
+
+    <!-- 删除之前的目录结构 -->
+    <target name="clear" description="clean folders">
+        <echo message="Clean target folder ......" />
+        <delete dir="${target.dir}" />
+    </target>
+
+    <!-- 创建文件目录 -->
+    <target name="init" depends="clear" description="init target folder">
+        <echo message="Initialing folder ......" />
+        <mkdir dir="${target.dir}" />
+        <mkdir dir="${project.dir}" />
+    </target>
+
+    <!-- 复制文件 -->
+    <target name="copy" depends="init" description="copy files into target folder">
+        <echo message="Copying files into target folder ......" />
+        <copy todir="${project.dir}">
+            <fileset dir="${basedir}">
+                <exclude name=".gitignore" />
+                <exclude name="**/.git/**" />
+                <exclude name="**/.idea/**" />
+                <exclude name="**/target/**" />
+                <exclude name="build.xml" />
+            </fileset>
+        </copy>
+    </target>
+
+    <!-- 打包项目 -->
+    <target name="zip" depends="copy" description="build the zip file">
+        <echo message="Packaging the zip file ......" />
+        <zip destfile="${target.dir}/gis.zip" basedir="${project.dir}" />
+    </target>
+
+    <!-- 执行ant build -->
+    <target name="build" depends="zip" description="build the zip file">
+        <echo message="Project build complete ......" />
+    </target>
+</project>

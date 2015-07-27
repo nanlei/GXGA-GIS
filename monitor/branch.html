@@ -4,21 +4,22 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>大连市公安局高新园区分局 - 地理信息系统</title>
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=xMn0hRSL0v1A1L39PqGXckNV"></script>
-    <script type="text/javascript" src="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
+    <script type="text/javascript"
+            src="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
     <script language="javascript" src="../js/jquery.min.js"></script>
-    <script language="javascript" src="../data/longwangtang.js"></script>
+    <script language="javascript" src="../data/branch.js"></script>
     <link href="../css/style.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" />
+    <link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css"/>
 </head>
 <body>
 <div id="allmap"></div>
 <script type="text/javascript">
-    //龙王塘中心点
-    var lng_longwangtang = 121.436124;
-    var lat_longwangtang = 38.853604;
+    //中心点
+    var lng_branch = 121.477263;
+    var lat_branch = 38.867289;
 
     var map = new BMap.Map("allmap"); // 创建Map实例
-    map.centerAndZoom(new BMap.Point(lng_longwangtang, lat_longwangtang), 14);// 初始化地图,设置中心点坐标和地图级别
+    map.centerAndZoom(new BMap.Point(lng_branch, lat_branch), 14);// 初始化地图,设置中心点坐标和地图级别
     map.setCurrentCity("大连");// 设置地图显示的城市 此项是必须设置的
     map.addControl(new BMap.NavigationControl());// 添加平移缩放控件
     map.addControl(new BMap.ScaleControl());// 添加比例尺控件
@@ -32,8 +33,8 @@
     map.addControl(panoramaCtrl);//添加全景控件
 
     //获取数据
-    for (var i = 0; i < longwangtang_monitor.length; i++) {
-        makePint(longwangtang_monitor[i]);
+    for (var i = 0; i < branch_monitor.length; i++) {
+        makePint(branch_monitor[i]);
     }
 
     function makePint(data) {

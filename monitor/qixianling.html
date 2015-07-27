@@ -14,7 +14,7 @@
 <div id="allmap"></div>
 <script type="text/javascript">
     //七贤岭中心点
-    var lng_qixianling = 121.528395;
+    var lng_qixianling = 121.523395;
     var lat_qixianling = 38.864537;
 
     var map = new BMap.Map("allmap"); // 创建Map实例
@@ -26,6 +26,41 @@
     map.enableScrollWheelZoom(true);//启用滚轮放大缩小
     //添加缩略图控件
     map.addControl(new BMap.OverviewMapControl({isOpen: true, anchor: BMAP_ANCHOR_BOTTOM_RIGHT}));   //右下角，打开
+
+    var panoramaCtrl = new BMap.PanoramaControl(); //构造全景控件
+    panoramaCtrl.setOffset(new BMap.Size(20, 20));
+    map.addControl(panoramaCtrl);//添加全景控件
+
+    //获取数据
+    for (var i = 0; i < qixianling_monitor.length; i++) {
+        makePint(qixianling_monitor[i]);
+    }
+
+    function makePint(data) {
+        var lng = data.lng;
+        var lat = data.lat;
+        var point = new BMap.Point(lng, lat);
+        var marker = new BMap.Marker(point);
+        marker.setTitle(data.name);
+
+        var content = "经度：" + data.lng + "<br>" + "纬度：" + data.lat + "<br>" + "区域：" + data.area + "<br>" + "状态：" + data.status + "<br>" + "备注：" + data.remark;
+        //创建检索信息窗口对象
+        var searchInfoWindow = new BMapLib.SearchInfoWindow(map, content, {
+            title: data.name, //标题
+            panel: "panel", //检索结果面板
+            enableAutoPan: true, //自动平移
+            searchTypes: [
+                BMAPLIB_TAB_FROM_HERE, //从这里出发
+                BMAPLIB_TAB_TO_HERE,  //到这里去
+                BMAPLIB_TAB_SEARCH   //周边检索
+            ]
+        });
+
+        marker.addEventListener("click", function (e) {
+            searchInfoWindow.open(marker);
+        });
+        map.addOverlay(marker);
+    }
 </script>
 </body>
 </html>
