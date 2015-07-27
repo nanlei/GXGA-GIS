@@ -28,6 +28,10 @@
     //添加缩略图控件
     map.addControl(new BMap.OverviewMapControl({isOpen: true, anchor: BMAP_ANCHOR_BOTTOM_RIGHT}));   //右下角，打开
 
+    var panoramaCtrl = new BMap.PanoramaControl(); //构造全景控件
+    panoramaCtrl.setOffset(new BMap.Size(20, 20));
+    map.addControl(panoramaCtrl);//添加全景控件
+
     //获取数据
     for (var i = 0; i < hekou_monitor.length; i++) {
         makePint(hekou_monitor[i]);
